@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permainan Tangkap "kami"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        .header p {
+            font-size: 1.6em;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .game-area {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .kami-character {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 250px;
+            z-index: 10;
+        }
+
+        .kami-head {
+            width: 160px;
+            height: 140px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            border: 5px solid #FF6B6B;
+            box-shadow: 0 0 20px rgba(255,107,107,0.5);
+            animation: headBob 1.5s ease-in-out infinite;
+        }
+
+        @keyframes headBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .kami-eyes {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+        }
+
+        .kami-eye {
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border-radius: 50%;
+            position: relative;
+            animation: blink 3s infinite;
+        }
+
+        .kami-eye::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #FFF;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+        }
+
+        @keyframes blink {
+            0%, 95%, 100% { transform: scaleY(1); }
+            97% { transform: scaleY(0.1); }
+        }
+
+        .kami-mouth {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background: #8B4513;
+            border-radius: 50%;
+            border: 3px solid #654321;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .kami-mouth.happy {
+            width: 80px;
+            height: 50px;
+            background: #32CD32;
+            animation: mouthGlow 0.5s ease-out;
+        }
+
+        .kami-mouth.sad {
+            width: 60px;
+            height: 20px;
+            background: #FF5252;
+            animation: mouthShake 0.3s ease-in-out;
+        }
+
+        @keyframes mouthGlow {
+            0% { box-shadow: 0 0 0 rgba(50,205,50,0.7); }
+            50% { box-shadow: 0 0 20px rgba(50,205,50,0.7); }
+            100% { box-shadow: 0 0 0 rgba(50,205,50,0.7); }
+        }
+
+        @keyframes mouthShake {
+            0%, 100% { transform: translateX(-50%); }
+            25% { transform: translateX(-53%); }
+            75% { transform: translateX(-47%); }
+        }
+
+        .kami-label {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: labelPulse 2s infinite;
+        }
+
+        @keyframes labelPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+        }
+
+        .kami-body {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+            border-radius: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid #FF6B6B;
+            box-shadow: 0 0 15px rgba(255,107,107,0.3);
+        }
+
+        .belly-display {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            align-items: flex-start;
+            align-content: flex-start;
+            overflow: hidden;
+        }
+
+        .belly-word {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: bold;
+            animation: bellyPop 0.3s ease-out;
+        }
+
+        @keyframes bellyPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .floating-word {
+            position: absolute;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: float 3s linear forwards;
+            user-select: none;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            pointer-events: auto;
+        }
+
+        .kami-word {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+        }
+
+        .other-word {
+            background: linear-gradient(45deg, #FF5722, #FF9800);
+            color: white;
+        }
+
+        .floating-word:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .floating-word.clicked {
+            animation: wordEaten 0.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { 
+                transform: translateY(600px) rotate(0deg); 
+            }
+            100% { 
+                transform: translateY(-100px) rotate(360deg); 
+            }
+        }
+
+        @keyframes wordEaten {
+            0% { 
+                transform: scale(1); 
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.5); 
+                opacity: 0.8;
+            }
+            100% { 
+                transform: scale(0) translateY(-100px); 
+                opacity: 0;
+            }
+        }
+
+        .control-panel {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .score-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .score-number {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 30px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .timer-display {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .control-btn.start {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+        }
+
+        .control-btn.pause {
+            background: linear-gradient(45deg, #FFA500, #FFD700);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 1000;
+            animation: gameOverAnimation 0.5s ease-out;
+        }
+
+        @keyframes gameOverAnimation {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .game-over h2 {
+            color: #4CAF50;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .game-over p {
+            color: #666;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .eaten-words-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .eaten-word {
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .kami-caught {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .other-caught {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .instruction {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            animation: instructionBlink 2s infinite;
+        }
+
+        @keyframes instructionBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            .game-area {
+                height: 600px;
+            }
+            
+            .kami-character {
+                width: 220px;
+                height: 280px;
+            }
+            
+            .kami-head {
+                width: 180px;
+                height: 140px;
+            }
+            
+            .kami-body {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .floating-word {
+                font-size: 18px;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎮 Permainan Tangkap "kami"</h1>
+        <p>Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".</p>
+    </div>
+
+    <div class="game-area" id="gameArea">
+        <div class="instruction" id="instruction">
+            🎯 Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".
+        </div>
+        
+        <div class="kami-character">
+            <div class="kami-head">
+                <div class="kami-label">kami</div>
+                <div class="kami-eyes">
+                    <div class="kami-eye"></div>
+                    <div class="kami-eye"></div>
+                </div>
+                <div class="kami-mouth" id="kamiMouth"></div>
+            </div>
+            <div class="kami-body">
+                <div class="belly-display" id="bellyDisplay"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <div class="score-display">
+            <span>📊 Skor:</span>
+            <div class="score-number" id="scoreDisplay">20</div>
+            <span>/ 20</span>
+        </div>
+
+        <div class="timer-display">
+            ⏱️ Masa: <span id="timer">30</span>s
+        </div>
+        
+        <div class="game-controls">
+            <button class="control-btn start" id="startBtn">🚀 Mula</button>
+            <button class="control-btn pause" id="pauseBtn">⏸️ Jeda</button>
+            <button class="control-btn" id="resetBtn">🔄 Reset</button>
+        </div>
+    </div>
+
+<script>
+// Game Configuration
+const GAME_CONFIG = {
+    initialScore: 20,
+    maxScore: 20,
+    gameDuration: 30,
+    wordSpawnInterval: 1500,
+    wordDisplayDuration: 3000,
+    kamiSpawnProbability: 0.5,
+    scoreChange: {
+        kami: 1,
+        other: -1
+    }
+};
+
+// Word Database
+const WORDS = {
+    kami: Array(10).fill('kami'),
+    others: [
+        'saya', 'aku', 'ku', 'hamba', 'patik', 'beta', 'daku',
+        'kau', 'engkau', 'kamu', 'mu', 'awak', 'anda',
+        'kalian', 'baginda', 'nya', 'dia', 'beliau', 'mereka'
+    ]
+};
+
+class GameState {
+    constructor() {
+        this.reset();
+    }
+
+    reset() {
+        this.active = false;
+        this.paused = false;
+        this.score = GAME_CONFIG.initialScore;
+        this.timer = GAME_CONFIG.gameDuration;
+        this.eatenWords = [];
+        this.floatingWords = [];
+        this.intervals = [];
+        this.generateWords();
+    }
+
+    generateWords() {
+        this.words = Array.from({ length: 20 }, () => 
+            Math.random() < GAME_CONFIG.kamiSpawnProbability 
+                ? 'kami' 
+                : WORDS.others[Math.floor(Math.random() * WORDS.others.length)]
+        );
+    }
+
+    addInterval(interval) {
+        this.intervals.push(interval);
+    }
+
+    clearIntervals() {
+        this.intervals.forEach(clearInterval);
+        this.intervals = [];
+    }
+
+    addFloatingWord(wordElement) {
+        this.floatingWords.push(wordElement);
+    }
+
+    removeFloatingWord(wordElement) {
+        this.floatingWords = this.floatingWords.filter(w => w !== wordElement);
+    }
+
+    clearFloatingWords() {
+        this.floatingWords.forEach(word => {
+            if (word.parentNode) {
+                clearTimeout(word.dataset.timeoutId);
+                word.remove();
+            }
+        });
+        this.floatingWords = [];
+    }
+}
+
+class DOMManager {
+    constructor() {
+        this.gameArea = document.getElementById('gameArea');
+        this.scoreDisplay = document.getElementById('scoreDisplay');
+        this.timerDisplay = document.getElementById('timer');
+        this.startBtn = document.getElementById('startBtn');
+        this.pauseBtn = document.getElementById('pauseBtn');
+        this.instruction = document.getElementById('instruction');
+        this.bellyDisplay = document.getElementById('bellyDisplay');
+        this.kamiMouth = document.getElementById('kamiMouth');
+    }
+
+    updateScore(score) {
+        this.scoreDisplay.textContent = score;
+    }
+
+    updateTimer(timer) {
+        this.timerDisplay.textContent = timer;
+    }
+
+    toggleStartButton(active) {
+        this.startBtn.textContent = active ? '🎮 Bermain' : '🚀 Mula';
+        this.startBtn.disabled = active;
+    }
+
+    togglePauseButton(paused) {
+        this.pauseBtn.textContent = paused ? '▶️ Sambung' : '⏸️ Jeda';
+    }
+
+    showInstruction(show) {
+        this.instruction.style.display = show ? 'block' : 'none';
+    }
+
+    clearBelly() {
+        this.bellyDisplay.innerHTML = '';
+    }
+
+    createWordElement(word) {
+        const wordElement = document.createElement('div');
+        wordElement.className = `floating-word ${word === 'kami' ? 'kami-word' : 'other-word'}`;
+        wordElement.textContent = word;
+        wordElement.dataset.word = word;
+        wordElement.dataset.caught = 'false';
+        wordElement.style.pointerEvents = 'auto';
+        return wordElement;
+    }
+
+    positionWordElement(wordElement) {
+        const startX = Math.random() * (this.gameArea.offsetWidth - 100);
+        wordElement.style.left = `${startX}px`;
+        wordElement.style.top = '-50px'; // Mulai dari atas layar
+        return wordElement;
+    }
+
+    animateMouth(isHappy) {
+        this.kamiMouth.classList.add(isHappy ? 'happy' : 'sad');
+        setTimeout(() => {
+            this.kamiMouth.classList.remove('happy', 'sad');
+        }, 500);
+    }
+
+    showGameOver(title, message, score, eatenWords) {
+        const gameOverScreen = document.createElement('div');
+        gameOverScreen.className = 'game-over';
+        gameOverScreen.innerHTML = `
+            <h2>${title}</h2>
+            <p>${message}</p>
+            <p>Skor Akhir: <strong>${score}/${GAME_CONFIG.maxScore}</strong></p>
+            <p>Perkataan yang ditangkap:</p>
+            <div class="eaten-words-container">
+                ${eatenWords.map(word => `
+                    <span class="eaten-word ${word === 'kami' ? 'kami-caught' : 'other-caught'}">
+                        ${word}
+                    </span>`).join('')}
+            </div>
+            <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
+        `;
+        this.gameArea.appendChild(gameOverScreen);
+        
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            gameController.resetGame();
+        });
+    }
+
+    removeGameOver() {
+        const gameOver = document.querySelector('.game-over');
+        if (gameOver) gameOver.remove();
+    }
+}
+
+class GameController {
+    constructor() {
+        this.state = new GameState();
+        this.dom = new DOMManager();
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        this.dom.startBtn.addEventListener('click', () => this.startGame());
+        this.dom.pauseBtn.addEventListener('click', () => this.togglePause());
+        
+        document.querySelector('.control-panel .control-btn:last-child')
+            .addEventListener('click', () => this.resetGame());
+    }
+
+    startGame() {
+        if (this.state.active) return;
+        
+        this.state.reset();
+        this.state.active = true;
+        
+        this.dom.updateScore(this.state.score);
+        this.dom.updateTimer(this.state.timer);
+        this.dom.toggleStartButton(true);
+        this.dom.showInstruction(false);
+        this.dom.clearBelly();
+        this.dom.removeGameOver();
+
+        this.spawnWord();
+        this.state.addInterval(setInterval(() => this.spawnWord(), GAME_CONFIG.wordSpawnInterval));
+        this.state.addInterval(setInterval(() => this.updateTimer(), 1000));
+    }
+
+    spawnWord() {
+        if (!this.state.active || this.state.paused || this.state.words.length === 0) return;
+
+        const word = this.state.words.shift();
+        const wordElement = this.dom.positionWordElement(this.dom.createWordElement(word));
+
+        // Animasi turun dari atas ke bawah
+        wordElement.style.animation = `floatDown ${GAME_CONFIG.wordDisplayDuration/1000}s linear forwards`;
+        
+        // Gunakan event listener sekali saja dengan {once: true}
+        wordElement.addEventListener('click', () => this.catchWord(wordElement), {once: true});
+        
+        this.dom.gameArea.appendChild(wordElement);
+        this.state.addFloatingWord(wordElement);
+
+        const timeoutId = setTimeout(() => {
+            if (wordElement.parentNode) {
+                this.removeWord(wordElement);
+                if (word === 'kami' && wordElement.dataset.caught === 'false') {
+                    this.updateScore(GAME_CONFIG.scoreChange.other);
+                }
+            }
+        }, GAME_CONFIG.wordDisplayDuration);
+
+        wordElement.dataset.timeoutId = timeoutId;
+    }
+
+    catchWord(wordElement) {
+        if (!this.state.active || this.state.paused) return;
+
+        // Nonaktifkan elemen segera setelah diklik
+        wordElement.style.pointerEvents = 'none';
+        wordElement.dataset.caught = 'true';
+        clearTimeout(wordElement.dataset.timeoutId);
+
+        const word = wordElement.dataset.word;
+        this.state.eatenWords.push(word);
+
+        this.dom.animateMouth(word === 'kami');
+        this.updateScore(word === 'kami' ? GAME_CONFIG.scoreChange.kami : GAME_CONFIG.scoreChange.other);
+        
+        // Animasi yang lebih smooth
+        wordElement.style.transition = 'all 0.3s ease-out';
+        wordElement.style.transform = 'scale(1.5) translateY(20px)';
+        wordElement.style.opacity = '0';
+        
+        // Hapus elemen setelah animasi selesai
+        setTimeout(() => {
+            if (wordElement.parentNode) {
+                wordElement.remove();
+                this.state.removeFloatingWord(wordElement);
+            }
+        }, 300);
+
+        // Tambahkan ke belly display
+        const bellyWord = document.createElement('div');
+        bellyWord.className = 'belly-word';
+        bellyWord.textContent = word;
+        this.dom.bellyDisplay.appendChild(bellyWord);
+    }
+
+    removeWord(wordElement) {
+        if (wordElement.parentNode) {
+            wordElement.remove();
+            this.state.removeFloatingWord(wordElement);
+        }
+    }
+
+    updateScore(change = 0) {
+        this.state.score = Math.max(
+            0, 
+            Math.min(GAME_CONFIG.maxScore, this.state.score + change)
+        );
+        this.dom.updateScore(this.state.score);
+    }
+
+    updateTimer() {
+        if (!this.state.paused && this.state.active) {
+            this.state.timer--;
+            this.dom.updateTimer(this.state.timer);
+            
+            if (this.state.timer <= 0) {
+                this.endGame();
+            }
+        }
+    }
+
+    togglePause() {
+        if (!this.state.active) return;
+
+        this.state.paused = !this.state.paused;
+        this.dom.togglePauseButton(this.state.paused);
+
+        const animationState = this.state.paused ? 'paused' : 'running';
+        this.state.floatingWords.forEach(word => {
+            word.style.animationPlayState = animationState;
+        });
+    }
+
+    endGame() {
+        this.state.clearIntervals();
+        this.state.clearFloatingWords();
+        this.state.active = false;
+
+        this.dom.showGameOver(
+            '⌛ Masa Tamat!',
+            `Permainan berakhir selepas ${GAME_CONFIG.gameDuration} saat.<br>
+             Anda berjaya menangkap ${this.state.eatenWords.filter(w => w === 'kami').length} perkataan "kami".`,
+            this.state.score,
+            this.state.eatenWords
+        );
+
+        this.dom.toggleStartButton(false);
+    }
+
+    resetGame() {
+        this.state.clearIntervals();
+        this.state.clearFloatingWords();
+        this.state.reset();
+
+        this.dom.updateScore(this.state.score);
+        this.dom.updateTimer(this.state.timer);
+        this.dom.toggleStartButton(false);
+        this.dom.showInstruction(true);
+        this.dom.clearBelly();
+        this.dom.removeGameOver();
+    }
+}
+
+// Tambahkan animasi floatDown ke dalam style
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes floatDown {
+        from { transform: translateY(-50px); }
+        to { transform: translateY(600px); }
+    }
+`;
+document.head.appendChild(style);
+
+const gameController = new GameController();
+document.addEventListener('DOMContentLoaded', () => gameController.resetGame());
+</script>
+</body>
+</html>
