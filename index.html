@@ -1,3 +1,6 @@
+Saya akan memastikan permainan ini mempunyai susun atur yang responsive untuk semua jenis peranti mobile dengan mengekalkan warna yang sama untuk semua perkataan seperti yang diminta sebelum ini.
+
+```html
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -5,113 +8,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Permainan Kata Ganti Nama - "kami"</title>
     <style>
-        /* CSS untuk memuat turun dan menggunakan fon secara optimum */
-        @font-face {
-            font-family: 'Comic Sans MS';
-            src: local('Comic Sans MS'), local('ComicSansMS');
-            font-display: swap; /* Memastikan teks kelihatan segera */
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Mengurangkan highlight biru pada tap */
+            -webkit-tap-highlight-color: transparent;
         }
         body {
-            /* Fallback kepada sans-serif untuk konsistensi cross-platform */
-            font-family: 'Comic Sans MS', Arial, Helvetica, sans-serif; 
-            font-size: 16px; /* Saiz asas yang lebih kecil untuk mobile */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px; /* Padding yang lebih kecil untuk mobile */
+            padding: 10px;
             overflow-x: hidden;
-            touch-action: manipulation; /* Meningkatkan respons sentuhan */
+            touch-action: manipulation;
         }
         .header {
             text-align: center;
-            margin-bottom: 15px; /* Margin yang lebih kecil */
+            margin-bottom: 15px;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Bayang yang lebih kecil */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             width: 100%;
         }
         .header h1 {
-            font-size: 1.8em; /* Saiz yang lebih kecil untuk tajuk utama */
-            margin-bottom: 5px; /* Margin bawah yang lebih kecil */
+            font-size: 2.2em;
+            margin-bottom: 8px;
             animation: bounce 2s infinite;
-            word-wrap: break-word; /* Memastikan tajuk tidak melampaui skrin */
+            word-wrap: break-word;
         }
         .header p {
-            font-size: 1em; /* Saiz yang lebih kecil untuk perenggan */
+            font-size: 1.1em;
             background: rgba(255,255,255,0.2);
-            padding: 8px 12px; /* Padding yang lebih kecil */
-            border-radius: 12px; /* Border radius yang lebih kecil */
-            backdrop-filter: blur(5px); /* Blur yang lebih kecil */
-            line-height: 1.4; /* Tinggi baris yang lebih baik untuk keterbacaan */
+            padding: 8px 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            line-height: 1.4;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-5px); } /* Gerakan yang lebih kecil */
-            60% { transform: translateY(-2.5px); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
         }
         .game-area {
             position: relative;
             width: 100%;
             max-width: 1000px;
-            /* Gunakan ketinggian berdasarkan viewport untuk responsiviti yang lebih baik */
-            height: 60vh; 
-            min-height: 350px; /* Ketinggian minimum untuk telefon kecil */
-            max-height: 500px; /* Ketinggian maksimum untuk skrin besar */
+            height: 60vh;
+            min-height: 400px;
+            max-height: 500px;
             background: rgba(255,255,255,0.1);
-            border-radius: 15px; /* Border radius yang lebih kecil */
-            backdrop-filter: blur(5px); /* Blur yang lebih kecil */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Bayang yang lebih kecil */
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             overflow: hidden;
-            margin-bottom: 15px; /* Margin bawah yang lebih kecil */
+            margin-bottom: 15px;
         }
         .kami-character {
             position: absolute;
-            bottom: 25px; /* Bottom yang lebih kecil */
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            /* Saiz yang lebih kecil untuk telefon */
-            width: 120px; 
-            height: 160px; 
+            width: 150px;
+            height: 200px;
             z-index: 10;
         }
         .kami-head {
-            /* Saiz yang lebih kecil */
-            width: 100px; 
-            height: 90px; 
+            width: 120px;
+            height: 100px;
             background: linear-gradient(45deg, #FFD700, #FFA500);
             border-radius: 50%;
             position: relative;
             margin: 0 auto;
-            /* Border yang lebih kecil */
-            border: 3px solid #FF6B6B; 
-            box-shadow: 0 0 10px rgba(255,107,107,0.5); /* Bayang yang lebih kecil */
+            border: 4px solid #FF6B6B;
+            box-shadow: 0 0 15px rgba(255,107,107,0.5);
             animation: headBob 1.5s ease-in-out infinite;
         }
         @keyframes headBob {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); } /* Gerakan yang lebih kecil */
+            50% { transform: translateY(-3px); }
         }
         .kami-eyes {
             display: flex;
             justify-content: space-between;
             position: absolute;
-            /* Posisi yang disesuaikan */
-            top: 20px; 
-            left: 20px; 
-            right: 20px; 
+            top: 25px;
+            left: 25px;
+            right: 25px;
         }
         .kami-eye {
-            /* Saiz yang lebih kecil */
-            width: 18px; 
-            height: 18px; 
+            width: 20px;
+            height: 20px;
             background: #000;
             border-radius: 50%;
             position: relative;
@@ -119,15 +108,13 @@
         }
         .kami-eye::after {
             content: '';
-            /* Saiz yang lebih kecil */
-            width: 4px; 
-            height: 4px; 
+            width: 5px;
+            height: 5px;
             background: #FFF;
             border-radius: 50%;
             position: absolute;
-            /* Posisi yang disesuaikan */
-            top: 2px; 
-            left: 2px; 
+            top: 2px;
+            left: 2px;
         }
         @keyframes blink {
             0%, 95%, 100% { transform: scaleY(1); }
@@ -135,89 +122,81 @@
         }
         .kami-mouth {
             position: absolute;
-            /* Posisi yang disesuaikan */
-            bottom: 12px; 
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
-            /* Saiz yang lebih kecil */
-            width: 40px; 
-            height: 25px; 
+            width: 45px;
+            height: 30px;
             background: #8B4513;
             border-radius: 50%;
-            /* Border yang lebih kecil */
-            border: 2px solid #654321; 
+            border: 2px solid #654321;
             transition: all 0.3s ease;
             cursor: pointer;
         }
         .kami-mouth.happy {
-            /* Saiz yang lebih kecil */
-            width: 50px; 
-            height: 30px; 
+            width: 60px;
+            height: 40px;
             background: #32CD32;
             animation: mouthGlow 0.5s ease-out;
         }
         .kami-mouth.sad {
-            /* Saiz yang lebih kecil */
-            width: 40px; 
-            height: 15px; 
+            width: 45px;
+            height: 15px;
             background: #FF5252;
             animation: mouthShake 0.3s ease-in-out;
         }
         @keyframes mouthGlow {
             0% { box-shadow: 0 0 0 rgba(50,205,50,0.7); }
-            50% { box-shadow: 0 0 15px rgba(50,205,50,0.7); } /* Bayang yang lebih kecil */
+            50% { box-shadow: 0 0 15px rgba(50,205,50,0.7); }
             100% { box-shadow: 0 0 0 rgba(50,205,50,0.7); }
         }
         @keyframes mouthShake {
             0%, 100% { transform: translateX(-50%); }
-            25% { transform: translateX(-52%); } /* Gerakan yang lebih kecil */
-            75% { transform: translateX(-48%); } /* Gerakan yang lebih kecil */
+            25% { transform: translateX(-53%); }
+            75% { transform: translateX(-47%); }
         }
         .kami-label {
             position: absolute;
-            top: -22px; /* Top yang disesuaikan */
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
             background: #4CAF50;
             color: white;
-            padding: 6px 12px; /* Padding yang lebih kecil */
-            border-radius: 12px; /* Border radius yang lebih kecil */
-            font-size: 16px; /* Saiz fon yang lebih kecil */
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 18px;
             font-weight: bold;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* Bayang yang lebih kecil */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             animation: labelPulse 2s infinite;
         }
         @keyframes labelPulse {
             0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.03); } /* Skala yang lebih kecil */
+            50% { transform: translateX(-50%) scale(1.05); }
         }
         .kami-body {
-            /* Saiz yang lebih kecil */
-            width: 60px; 
-            height: 60px; 
+            width: 80px;
+            height: 80px;
             background: linear-gradient(45deg, #4CAF50, #2E7D32);
-            border-radius: 12px; /* Border radius yang lebih kecil */
+            border-radius: 15px;
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            /* Border yang lebih kecil */
-            border: 3px solid #FF6B6B; 
-            box-shadow: 0 0 10px rgba(255,107,107,0.3); /* Bayang yang lebih kecil */
+            border: 3px solid #FF6B6B;
+            box-shadow: 0 0 10px rgba(255,107,107,0.3);
         }
         .belly-display {
             position: absolute;
-            /* Padding yang lebih kecil */
-            bottom: 5px; 
-            left: 5px; 
-            right: 5px; 
-            top: 5px; 
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            top: 8px;
             background: rgba(255,255,255,0.3);
-            border-radius: 6px; /* Border radius yang lebih kecil */
-            padding: 3px; /* Padding yang lebih kecil */
+            border-radius: 8px;
+            padding: 4px;
             display: flex;
             flex-wrap: wrap;
-            gap: 2px; /* Gap yang lebih kecil */
+            gap: 2px;
             align-items: flex-start;
             align-content: flex-start;
             overflow: hidden;
@@ -225,113 +204,94 @@
         .belly-word {
             background: rgba(255,255,255,0.9);
             color: #333;
-            padding: 1px 4px; /* Padding yang lebih kecil */
-            border-radius: 5px; /* Border radius yang lebih kecil */
-            font-size: 8px; /* Saiz fon yang lebih kecil */
+            padding: 1px 4px;
+            border-radius: 6px;
+            font-size: 8px;
             font-weight: bold;
             animation: bellyPop 0.3s ease-out;
         }
         @keyframes bellyPop {
             0% { transform: scale(0); }
-            50% { transform: scale(1.1); } /* Skala yang lebih kecil */
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
         .floating-word {
             position: absolute;
-            /* Padding yang lebih kecil */
-            padding: 10px 15px; 
-            border-radius: 12px; /* Border radius yang lebih kecil */
-            font-size: 18px; /* Saiz fon yang lebih kecil */
+            padding: 12px 18px;
+            border-radius: 15px;
+            font-size: 20px;
             font-weight: bold;
-            /* Gunakan fon sans-serif untuk konsistensi */
-            font-family: 'Comic Sans MS', Arial, Helvetica, sans-serif; 
+            font-family: 'Comic Sans MS', cursive;
             cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* Bayang yang lebih kecil */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
-            /* Animasi yang disesuaikan berdasarkan ketinggian viewport */
-            animation: floatDown linear forwards; 
+            animation: floatDown 6s linear forwards;
             user-select: none;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Bayang teks yang lebih kecil */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             pointer-events: auto;
-            touch-action: manipulation; /* Meningkatkan respons sentuhan */
+            touch-action: manipulation;
             z-index: 5;
-            will-change: transform; /* Meningkatkan prestasi animasi */
-        }
-        .kami-word {
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
-            color: white;
-        }
-        .other-word {
-            background: linear-gradient(45deg, #FF5722, #FF9800);
+            will-change: transform;
+            /* Warna yang sama untuk semua perkataan */
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
             color: white;
         }
         .floating-word:hover {
-            /* Efek hover yang lebih kecil untuk peranti sentuh */
-            transform: scale(1.05); 
-            box-shadow: 0 5px 12px rgba(0,0,0,0.4); /* Bayang yang lebih kecil */
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
         .floating-word.clicked {
             animation: wordEaten 0.5s ease-out forwards;
             pointer-events: none;
         }
-        /* Animasi floatDown disesuaikan berdasarkan ketinggian game-area */
         @keyframes floatDown {
             0% { transform: translateY(-50px); }
-            100% { transform: translateY(calc(100vh - 100px)); } /* Menyesuaikan dengan viewport */
+            100% { transform: translateY(100vh); }
         }
         @keyframes wordEaten {
-            0% { 
-                transform: scale(1); 
-                opacity: 1;
-            }
-            50% { 
-                transform: scale(1.2); /* Skala yang lebih kecil */
-                opacity: 0.8;
-            }
-            100% { 
-                transform: scale(0) translateY(-60px); /* Translasi Y yang lebih kecil */
-                opacity: 0;
-            }
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(0) translateY(-100px); opacity: 0; }
         }
         .control-panel {
             display: flex;
-            flex-direction: column; /* Lajur tunggal untuk telefon kecil */
-            gap: 10px; /* Gap yang lebih kecil */
+            flex-direction: column;
+            gap: 10px;
             align-items: center;
             background: rgba(255,255,255,0.2);
-            padding: 12px; /* Padding yang lebih kecil */
-            border-radius: 12px; /* Border radius yang lebih kecil */
-            backdrop-filter: blur(5px); /* Blur yang lebih kecil */
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
             color: white;
-            font-size: 14px; /* Saiz fon yang lebih kecil */
+            font-size: 16px;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             width: 100%;
-            max-width: 1000px;
+            max-width: 500px;
         }
         .score-display {
             display: flex;
             align-items: center;
-            gap: 8px; /* Gap yang lebih kecil */
+            gap: 8px;
         }
         .score-number {
             background: #4CAF50;
             color: white;
-            padding: 8px 12px; /* Padding yang lebih kecil */
-            border-radius: 10px; /* Border radius yang lebih kecil */
-            font-size: 20px; /* Saiz fon yang lebih kecil */
-            min-width: 50px; /* Min-width yang lebih kecil */
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 24px;
+            min-width: 60px;
             text-align: center;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* Bayang yang lebih kecil */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .timer-display {
             display: flex;
             align-items: center;
-            gap: 5px; /* Gap yang lebih kecil */
+            gap: 5px;
         }
         .game-controls {
             display: flex;
-            gap: 8px; /* Gap yang lebih kecil */
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -339,19 +299,19 @@
             background: linear-gradient(45deg, #4ECDC4, #44A08D);
             color: white;
             border: none;
-            padding: 10px 15px; /* Padding yang lebih kecil */
-            border-radius: 10px; /* Border radius yang lebih kecil */
-            font-size: 14px; /* Saiz fon yang lebih kecil */
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* Bayang yang lebih kecil */
-            touch-action: manipulation; /* Meningkatkan respons sentuhan */
-            min-width: 90px; /* Min-width yang lebih kecil */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            touch-action: manipulation;
+            min-width: 100px;
         }
         .control-btn:hover {
-            transform: translateY(-1px); /* Translasi Y yang lebih kecil */
-            box-shadow: 0 5px 12px rgba(0,0,0,0.3); /* Bayang yang lebih kecil */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
         .control-btn:active {
             transform: translateY(0);
@@ -368,17 +328,16 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: rgba(255,255,255,0.95);
-            padding: 20px; /* Padding yang lebih kecil */
-            border-radius: 15px; /* Border radius yang lebih kecil */
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5); /* Bayang yang lebih kecil */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             z-index: 1000;
             animation: gameOverAnimation 0.5s ease-out;
-            /* Tetapkan lebar untuk mobile */
-            width: 90%; 
-            max-width: 400px; /* Max-width untuk skrin besar */
-            max-height: 80vh; /* Tinggi maksimum untuk kandungan panjang */
-            overflow-y: auto; /* Tatal jika kandungan terlalu panjang */
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         @keyframes gameOverAnimation {
             0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
@@ -386,576 +345,124 @@
         }
         .game-over h2 {
             color: #4CAF50;
-            font-size: 2em; /* Saiz fon yang lebih kecil */
-            margin-bottom: 15px; /* Margin bawah yang lebih kecil */
+            font-size: 2em;
+            margin-bottom: 15px;
         }
         .game-over p {
             color: #666;
-            font-size: 1.1em; /* Saiz fon yang lebih kecil */
-            margin-bottom: 15px; /* Margin bawah yang lebih kecil */
-            line-height: 1.4; /* Tinggi baris yang lebih baik */
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
         .eaten-words-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px; /* Gap yang lebih kecil */
+            gap: 6px;
             justify-content: center;
-            margin: 10px 0; /* Margin yang lebih kecil */
-            max-height: 120px; /* Tinggi maksimum */
-            overflow-y: auto; /* Tatal jika terlalu banyak perkataan */
-            padding: 5px; /* Padding yang lebih kecil */
+            margin: 10px 0;
+            max-height: 120px;
+            overflow-y: auto;
+            padding: 5px;
         }
         .eaten-word {
-            padding: 3px 8px; /* Padding yang lebih kecil */
-            border-radius: 8px; /* Border radius yang lebih kecil */
-            font-size: 12px; /* Saiz fon yang lebih kecil */
-        }
-        .kami-caught {
-            background: #4CAF50;
-            color: white;
-        }
-        .other-caught {
-            background: #FF6B6B;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            background: #6a11cb;
             color: white;
         }
         .instruction {
             position: absolute;
-            top: 10px; /* Top yang lebih kecil */
-            left: 10px; /* Left yang lebih kecil */
-            right: 10px; /* Right yang lebih kecil */
+            top: 10px;
+            left: 10px;
+            right: 10px;
             background: rgba(255,255,255,0.2);
             color: white;
-            padding: 10px; /* Padding yang lebih kecil */
-            border-radius: 10px; /* Border radius yang lebih kecil */
+            padding: 10px;
+            border-radius: 10px;
             text-align: center;
-            font-size: 12px; /* Saiz fon yang lebih kecil */
             font-weight: bold;
-            backdrop-filter: blur(5px); /* Blur yang lebih kecil */
+            backdrop-filter: blur(10px);
             animation: instructionBlink 2s infinite;
-            line-height: 1.4; /* Tinggi baris yang lebih baik */
+            font-size: 14px;
+            line-height: 1.4;
             z-index: 20;
         }
         @keyframes instructionBlink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
-
-        /* Media query untuk telefon besar / tablet kecil dalam mod potret */
-        @media (min-width: 480px) {
-            body {
-                font-size: 17px;
-                padding: 15px;
-            }
-            .header h1 {
-                font-size: 2.2em;
-            }
-            .header p {
-                font-size: 1.1em;
-                padding: 10px 15px;
-            }
+        /* Landscape orientation adjustments */
+        @media (orientation: landscape) and (max-height: 500px) {
             .game-area {
-                height: 65vh;
-                min-height: 400px;
-            }
-            .kami-character {
-                width: 140px;
-                height: 180px;
-                bottom: 30px;
-            }
-            .kami-head {
-                width: 110px;
-                height: 100px;
-                border: 4px solid #FF6B6B;
-            }
-            .kami-eyes {
-                top: 22px;
-                left: 22px;
-                right: 22px;
-            }
-            .kami-eye {
-                width: 20px;
-                height: 20px;
-            }
-            .kami-eye::after {
-                width: 5px;
-                height: 5px;
-                top: 2.5px;
-                left: 2.5px;
-            }
-            .kami-mouth {
-                width: 45px;
-                height: 30px;
-                bottom: 15px;
-                border: 2.5px solid #654321;
-            }
-            .kami-mouth.happy {
-                width: 55px;
-                height: 35px;
-            }
-            .kami-mouth.sad {
-                width: 45px;
-                height: 18px;
-            }
-            .kami-label {
-                top: -25px;
-                padding: 7px 14px;
-                font-size: 17px;
-            }
-            .kami-body {
-                width: 70px;
-                height: 70px;
-                border-radius: 15px;
-                border: 3.5px solid #FF6B6B;
-            }
-            .belly-display {
-                bottom: 7px;
-                left: 7px;
-                right: 7px;
-                top: 7px;
-                border-radius: 8px;
-                padding: 4px;
-                gap: 2.5px;
-            }
-            .belly-word {
-                padding: 1.5px 5px;
-                border-radius: 6px;
-                font-size: 9px;
-            }
-            .floating-word {
-                padding: 12px 18px;
-                border-radius: 15px;
-                font-size: 20px;
-            }
-            @keyframes wordEaten {
-                50% { 
-                    transform: scale(1.3); 
-                }
-                100% { 
-                    transform: scale(0) translateY(-70px); 
-                }
-            }
-            .control-panel {
-                gap: 15px;
-                padding: 15px;
-                font-size: 16px;
-            }
-            .score-display {
-                gap: 9px;
-            }
-            .score-number {
-                padding: 10px 15px;
-                border-radius: 12px;
-                font-size: 24px;
-                min-width: 60px;
-            }
-            .game-controls {
-                gap: 9px;
-            }
-            .control-btn {
-                padding: 12px 18px;
-                border-radius: 12px;
-                font-size: 16px;
-                min-width: 100px;
-            }
-            .game-over {
-                padding: 25px;
-                border-radius: 17px;
-            }
-            .game-over h2 {
-                font-size: 2.2em;
-                margin-bottom: 18px;
-            }
-            .game-over p {
-                font-size: 1.2em;
-                margin-bottom: 18px;
-            }
-            .instruction {
-                top: 15px;
-                left: 15px;
-                right: 15px;
-                padding: 12px;
-                font-size: 13px;
-            }
-        }
-
-        /* Media query untuk skrin sederhana (tablet) */
-        @media (min-width: 768px) {
-            body {
-                font-size: 18px;
-                padding: 20px;
-            }
-            .header {
-                margin-bottom: 20px;
-            }
-            .header h1 {
-                font-size: 3em;
-                margin-bottom: 10px;
-            }
-            .header p {
-                font-size: 1.4em;
-                padding: 10px 20px;
-                border-radius: 20px;
-                backdrop-filter: blur(10px);
-            }
-            .game-area {
-                height: 65vh;
-                min-height: 450px;
-                max-height: 550px;
-                border-radius: 20px;
-                backdrop-filter: blur(10px);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                margin-bottom: 20px;
-            }
-            .kami-character {
-                width: 180px;
-                height: 230px;
-                bottom: 40px;
-            }
-            .kami-head {
-                width: 140px;
-                height: 120px;
-                border: 5px solid #FF6B6B;
-                box-shadow: 0 0 20px rgba(255,107,107,0.5);
-            }
-            @keyframes headBob {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-5px); }
-            }
-            .kami-eyes {
-                top: 25px;
-                left: 25px;
-                right: 25px;
-            }
-            .kami-eye {
-                width: 25px;
-                height: 25px;
-            }
-            .kami-eye::after {
-                width: 5px;
-                height: 5px;
-                top: 2.5px;
-                left: 2.5px;
-            }
-            .kami-mouth {
-                width: 55px;
-                height: 35px;
-                bottom: 18px;
-                border: 3px solid #654321;
-            }
-            .kami-mouth.happy {
-                width: 70px;
-                height: 45px;
-            }
-            .kami-mouth.sad {
-                width: 55px;
-                height: 20px;
-            }
-            @keyframes mouthGlow {
-                50% { box-shadow: 0 0 20px rgba(50,205,50,0.7); }
-            }
-            @keyframes mouthShake {
-                25% { transform: translateX(-53%); }
-                75% { transform: translateX(-47%); }
-            }
-            .kami-label {
-                top: -30px;
-                padding: 10px 20px;
-                border-radius: 20px;
-                font-size: 20px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            }
-            @keyframes labelPulse {
-                50% { transform: translateX(-50%) scale(1.05); }
-            }
-            .kami-body {
-                width: 90px;
-                height: 90px;
-                border-radius: 20px;
-                border: 4px solid #FF6B6B;
-                box-shadow: 0 0 15px rgba(255,107,107,0.3);
-            }
-            .belly-display {
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-                top: 10px;
-                border-radius: 10px;
-                padding: 5px;
-                gap: 3px;
-            }
-            .belly-word {
-                padding: 2px 6px;
-                border-radius: 8px;
-                font-size: 10px;
-            }
-            @keyframes bellyPop {
-                50% { transform: scale(1.2); }
-            }
-            .floating-word {
-                padding: 15px 25px;
-                border-radius: 20px;
-                font-size: 22px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            }
-            .floating-word:hover {
-                transform: scale(1.1);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            }
-            @keyframes floatDown {
-                0% { transform: translateY(-50px); }
-                100% { transform: translateY(calc(100vh - 150px)); }
-            }
-            @keyframes wordEaten {
-                50% { 
-                    transform: scale(1.4); 
-                }
-                100% { 
-                    transform: scale(0) translateY(-85px); 
-                }
-            }
-            .control-panel {
-                flex-direction: row; /* Kembali kepada baris untuk skrin yang lebih besar */
-                flex-wrap: wrap;
-                justify-content: space-around;
-                gap: 20px;
-                padding: 20px;
-                border-radius: 20px;
-                backdrop-filter: blur(10px);
-                font-size: 18px;
-            }
-            .score-display {
-                gap: 10px;
-            }
-            .score-number {
-                padding: 15px 20px;
-                border-radius: 15px;
-                font-size: 30px;
-                min-width: 80px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            }
-            .game-controls {
-                gap: 10px;
-            }
-            .control-btn {
-                padding: 15px 25px;
-                border-radius: 15px;
-                font-size: 20px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                min-width: 120px;
-            }
-            .control-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            }
-            .game-over {
-                padding: 40px;
-                border-radius: 20px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-                width: auto;
-                max-width: none;
-            }
-            .game-over h2 {
-                font-size: 3em;
-                margin-bottom: 20px;
-            }
-            .game-over p {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
-            .instruction {
-                top: 20px;
-                left: 20px;
-                right: 20px;
-                padding: 15px;
-                border-radius: 15px;
-                font-size: 16px;
-                backdrop-filter: blur(10px);
-            }
-        }
-
-        /* Media query untuk skrin besar (desktop) - gunakan saiz asal */
-        @media (min-width: 1024px) {
-            body {
-                font-size: 18px;
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 3.5em;
-            }
-            .header p {
-                font-size: 1.6em;
-            }
-            .game-area {
-                height: 65vh;
-                min-height: 500px;
-                max-height: 600px;
-            }
-            .kami-character {
-                width: 200px;
-                height: 250px;
-                bottom: 50px;
-            }
-            .kami-head {
-                width: 160px;
-                height: 140px;
-            }
-            .kami-eyes {
-                top: 30px;
-                left: 30px;
-                right: 30px;
-            }
-            .kami-eye {
-                width: 30px;
-                height: 30px;
-            }
-            .kami-eye::after {
-                width: 6px;
-                height: 6px;
-                top: 3px;
-                left: 3px;
-            }
-            .kami-mouth {
-                width: 60px;
-                height: 40px;
-                bottom: 20px;
-            }
-            .kami-mouth.happy {
-                width: 80px;
-                height: 50px;
-            }
-            .kami-mouth.sad {
-                width: 60px;
-                height: 25px;
-            }
-            .kami-label {
-                font-size: 22px;
-            }
-            .kami-body {
-                width: 100px;
-                height: 100px;
-            }
-            .floating-word {
-                padding: 15px 25px;
-                font-size: 22px;
-            }
-            @keyframes floatDown {
-                0% { transform: translateY(-50px); }
-                100% { transform: translateY(calc(100vh - 200px)); }
-            }
-            @keyframes wordEaten {
-                50% { 
-                    transform: scale(1.5); 
-                }
-                100% { 
-                    transform: scale(0) translateY(-100px); 
-                }
-            }
-            .control-panel {
-                font-size: 18px;
-            }
-            .score-number {
-                font-size: 30px;
-                min-width: 80px;
-            }
-            .control-btn {
-                padding: 15px 25px;
-                font-size: 20px;
-                min-width: 120px;
-            }
-            .game-over h2 {
-                font-size: 3em;
-            }
-            .game-over p {
-                font-size: 1.5em;
-            }
-            .instruction {
-                font-size: 18px;
-            }
-        }
-
-        /* Media query untuk telefon dalam mod landskap */
-        @media (max-width: 767px) and (orientation: landscape) {
-            .game-area {
-                height: 50vh; /* Ketinggian yang lebih kecil untuk landskap */
+                height: 70vh;
                 min-height: 250px;
                 max-height: 350px;
             }
-            @keyframes floatDown {
-                0% { transform: translateY(-50px); }
-                100% { transform: translateY(calc(100vh - 150px)); }
-            }
-            .kami-character {
-                width: 100px; /* Saiz yang lebih kecil untuk landskap */
-                height: 130px; /* Saiz yang lebih kecil untuk landskap */
-                bottom: 15px; /* Bottom yang lebih kecil untuk landskap */
-            }
-            .kami-head {
-                width: 80px; /* Saiz yang lebih kecil untuk landskap */
-                height: 70px; /* Saiz yang lebih kecil untuk landskap */
-            }
-            .kami-body {
-                width: 50px; /* Saiz yang lebih kecil untuk landskap */
-                height: 50px; /* Saiz yang lebih kecil untuk landskap */
-            }
-            .floating-word {
-                font-size: 16px; /* Saiz fon yang lebih kecil untuk landskap */
-                padding: 8px 14px; /* Padding yang lebih kecil untuk landskap */
-            }
             .control-panel {
-                flex-direction: row; /* Kekalkan baris dalam landskap jika muat */
-                font-size: 13px; /* Saiz fon yang lebih kecil untuk landskap */
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
                 padding: 10px;
             }
-            .control-btn {
-                padding: 8px 12px; /* Padding yang lebih kecil untuk landskap */
-                font-size: 13px; /* Saiz fon yang lebih kecil untuk landskap */
-                min-width: 80px; /* Min-width yang lebih kecil untuk landskap */
-            }
-            .score-number {
-                font-size: 18px; /* Saiz fon yang lebih kecil untuk landskap */
-                min-width: 40px; /* Min-width yang lebih kecil untuk landskap */
-                padding: 6px 10px; /* Padding yang lebih kecil untuk landskap */
+            .score-display, .timer-display {
+                margin-bottom: 0;
             }
             .header h1 {
-                font-size: 1.8em; /* Saiz fon yang lebih kecil untuk landskap */
+                font-size: 1.8em;
             }
             .header p {
-                font-size: 1em; /* Saiz fon yang lebih kecil untuk landskap */
-                padding: 5px 10px; /* Padding yang lebih kecil untuk landskap */
+                font-size: 1em;
+                padding: 5px 10px;
             }
         }
-        
-        /* Media query untuk telefon sangat kecil */
-        @media (max-width: 350px) {
-            body {
-                font-size: 15px;
-                padding: 8px;
-            }
+        /* Larger mobile devices */
+        @media (min-width: 480px) and (max-width: 768px) {
             .header h1 {
-                font-size: 1.6em;
+                font-size: 2.5em;
             }
             .header p {
-                font-size: 0.9em;
+                font-size: 1.2em;
+            }
+            .floating-word {
+                font-size: 22px;
+                padding: 14px 20px;
+            }
+            .control-btn {
+                padding: 15px 25px;
+                font-size: 18px;
+            }
+        }
+        /* Small screens */
+        @media (max-width: 360px) {
+            body {
+                padding: 5px;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .header p {
+                font-size: 1em;
                 padding: 6px 10px;
             }
             .game-area {
                 height: 55vh;
-                min-height: 300px;
+                min-height: 350px;
             }
             .kami-character {
-                width: 100px;
-                height: 130px;
-                bottom: 20px;
+                width: 120px;
+                height: 160px;
+                bottom: 25px;
             }
             .kami-head {
-                width: 80px;
-                height: 70px;
-                border: 2.5px solid #FF6B6B;
+                width: 90px;
+                height: 80px;
+                border: 3px solid #FF6B6B;
             }
             .kami-eyes {
-                top: 18px;
-                left: 18px;
-                right: 18px;
+                top: 20px;
+                left: 20px;
+                right: 20px;
             }
             .kami-eye {
                 width: 15px;
@@ -969,13 +476,13 @@
             }
             .kami-mouth {
                 width: 35px;
-                height: 22px;
-                bottom: 10px;
-                border: 1.5px solid #654321;
+                height: 25px;
+                bottom: 12px;
+                border: 2px solid #654321;
             }
             .kami-mouth.happy {
                 width: 45px;
-                height: 28px;
+                height: 30px;
             }
             .kami-mouth.sad {
                 width: 35px;
@@ -983,22 +490,22 @@
             }
             .kami-label {
                 top: -20px;
-                padding: 5px 10px;
-                font-size: 14px;
+                padding: 6px 12px;
+                font-size: 16px;
             }
             .kami-body {
-                width: 50px;
-                height: 50px;
-                border-radius: 10px;
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
                 border: 2.5px solid #FF6B6B;
             }
             .belly-display {
-                bottom: 4px;
-                left: 4px;
-                right: 4px;
-                top: 4px;
-                border-radius: 5px;
-                padding: 2px;
+                bottom: 6px;
+                left: 6px;
+                right: 6px;
+                top: 6px;
+                border-radius: 6px;
+                padding: 3px;
                 gap: 1.5px;
             }
             .belly-word {
@@ -1007,40 +514,23 @@
                 font-size: 7px;
             }
             .floating-word {
-                padding: 8px 12px;
-                border-radius: 10px;
-                font-size: 16px;
-            }
-            @keyframes wordEaten {
-                50% { 
-                    transform: scale(1.2); 
-                }
-                100% { 
-                    transform: scale(0) translateY(-50px); 
-                }
+                font-size: 18px;
+                padding: 10px 16px;
+                border-radius: 12px;
             }
             .control-panel {
-                gap: 8px;
-                padding: 10px;
-                font-size: 13px;
-            }
-            .score-display {
-                gap: 6px;
+                padding: 12px;
+                font-size: 14px;
             }
             .score-number {
-                padding: 6px 10px;
-                border-radius: 8px;
-                font-size: 18px;
-                min-width: 45px;
-            }
-            .game-controls {
-                gap: 6px;
+                padding: 8px 12px;
+                font-size: 20px;
+                min-width: 50px;
             }
             .control-btn {
-                padding: 8px 12px;
-                border-radius: 8px;
-                font-size: 13px;
-                min-width: 80px;
+                padding: 10px 15px;
+                font-size: 14px;
+                min-width: 85px;
             }
             .game-over {
                 padding: 15px;
@@ -1051,7 +541,7 @@
                 margin-bottom: 12px;
             }
             .game-over p {
-                font-size: 1em;
+                font-size: 1.1em;
                 margin-bottom: 12px;
             }
             .instruction {
@@ -1059,10 +549,49 @@
                 left: 8px;
                 right: 8px;
                 padding: 8px;
-                font-size: 11px;
+                font-size: 12px;
+                border-radius: 8px;
             }
         }
-        
+        /* Very large screens */
+        @media (min-width: 1024px) {
+            body {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 3em;
+            }
+            .header p {
+                font-size: 1.4em;
+            }
+            .game-area {
+                height: 65vh;
+                max-height: 600px;
+            }
+            .kami-character {
+                width: 180px;
+                height: 240px;
+                bottom: 40px;
+            }
+            .kami-head {
+                width: 140px;
+                height: 120px;
+            }
+            .floating-word {
+                font-size: 24px;
+                padding: 16px 22px;
+            }
+            .control-panel {
+                max-width: 600px;
+                padding: 20px;
+                font-size: 18px;
+            }
+            .control-btn {
+                padding: 15px 25px;
+                font-size: 18px;
+                min-width: 120px;
+            }
+        }
         /* Prevent text selection during gameplay */
         .no-select {
             -webkit-user-select: none;
@@ -1110,303 +639,290 @@
             <button class="control-btn" id="resetBtn">🔄 Reset</button>
         </div>
     </div>
-    <script>
-        // Konfigurasi Permainan
-        const GAME_CONFIG = {
-            initialScore: 20,
-            maxScore: 20,
-            gameDuration: 30,
-            wordSpawnInterval: 2000, // Meningkatkan dari 1500 ke 2000
-            wordDisplayDuration: 6000, // Meningkatkan dari 3000 ke 6000
-            kamiSpawnProbability: 0.5,
-            scoreChange: {
-                kami: 1,
-                other: -1
+<script>
+// Game Configuration
+const GAME_CONFIG = {
+    initialScore: 20,
+    maxScore: 20,
+    gameDuration: 30,
+    wordSpawnInterval: 2000,
+    wordDisplayDuration: 6000,
+    kamiSpawnProbability: 0.5,
+    scoreChange: {
+        kami: 1,
+        other: -1
+    }
+};
+// Word Database
+const WORDS = {
+    kami: Array(10).fill('kami'),
+    others: [
+        'saya', 'aku', 'ku', 'hamba', 'patik', 'beta', 'daku',
+        'kau', 'engkau', 'kamu', 'mu', 'awak', 'anda',
+        'kalian', 'baginda', 'nya', 'dia', 'beliau', 'mereka'
+    ]
+};
+class GameState {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.active = false;
+        this.paused = false;
+        this.score = GAME_CONFIG.initialScore;
+        this.timer = GAME_CONFIG.gameDuration;
+        this.eatenWords = [];
+        this.floatingWords = [];
+        this.intervals = [];
+        this.generateWords();
+    }
+    generateWords() {
+        this.words = Array.from({ length: 20 }, () => 
+            Math.random() < GAME_CONFIG.kamiSpawnProbability 
+                ? 'kami' 
+                : WORDS.others[Math.floor(Math.random() * WORDS.others.length)]
+        );
+    }
+    addInterval(interval) {
+        this.intervals.push(interval);
+    }
+    clearIntervals() {
+        this.intervals.forEach(clearInterval);
+        this.intervals = [];
+    }
+    addFloatingWord(wordElement) {
+        this.floatingWords.push(wordElement);
+    }
+    removeFloatingWord(wordElement) {
+        this.floatingWords = this.floatingWords.filter(w => w !== wordElement);
+    }
+    clearFloatingWords() {
+        this.floatingWords.forEach(word => {
+            if (word.parentNode) {
+                clearTimeout(word.dataset.timeoutId);
+                word.remove();
             }
-        };
-        // Pangkalan Data Perkataan
-        const WORDS = {
-            kami: Array(10).fill('kami'),
-            others: [
-                'saya', 'aku', 'ku', 'hamba', 'patik', 'beta', 'daku',
-                'kau', 'engkau', 'kamu', 'mu', 'awak', 'anda',
-                'kalian', 'baginda', 'nya', 'dia', 'beliau', 'mereka'
-            ]
-        };
-        class GameState {
-            constructor() {
-                this.reset();
+        });
+        this.floatingWords = [];
+    }
+}
+class DOMManager {
+    constructor() {
+        this.gameArea = document.getElementById('gameArea');
+        this.scoreDisplay = document.getElementById('scoreDisplay');
+        this.timerDisplay = document.getElementById('timer');
+        this.startBtn = document.getElementById('startBtn');
+        this.pauseBtn = document.getElementById('pauseBtn');
+        this.instruction = document.getElementById('instruction');
+        this.bellyDisplay = document.getElementById('bellyDisplay');
+        this.kamiMouth = document.getElementById('kamiMouth');
+    }
+    updateScore(score) {
+        this.scoreDisplay.textContent = score;
+    }
+    updateTimer(timer) {
+        this.timerDisplay.textContent = timer;
+    }
+    toggleStartButton(active) {
+        this.startBtn.textContent = active ? '🎮 Bermain' : '🚀 Mula';
+        this.startBtn.disabled = active;
+    }
+    togglePauseButton(paused) {
+        this.pauseBtn.textContent = paused ? '▶️ Sambung' : '⏸️ Jeda';
+    }
+    showInstruction(show) {
+        this.instruction.style.display = show ? 'block' : 'none';
+    }
+    clearBelly() {
+        this.bellyDisplay.innerHTML = '';
+    }
+    createWordElement(word) {
+        const wordElement = document.createElement('div');
+        wordElement.className = `floating-word`; // Semua perkataan menggunakan kelas yang sama
+        wordElement.textContent = word;
+        wordElement.dataset.word = word;
+        wordElement.dataset.caught = 'false';
+        wordElement.style.pointerEvents = 'auto';
+        return wordElement;
+    }
+    positionWordElement(wordElement) {
+        const maxWidth = this.gameArea.offsetWidth - 100;
+        const startX = Math.random() * maxWidth;
+        wordElement.style.left = `${Math.max(10, Math.min(startX, maxWidth))}px`;
+        wordElement.style.top = '-50px';
+        return wordElement;
+    }
+    animateMouth(isHappy) {
+        this.kamiMouth.classList.add(isHappy ? 'happy' : 'sad');
+        setTimeout(() => {
+            this.kamiMouth.classList.remove('happy', 'sad');
+        }, 500);
+    }
+    showGameOver(title, message, score, eatenWords) {
+        const gameOverScreen = document.createElement('div');
+        gameOverScreen.className = 'game-over';
+        gameOverScreen.innerHTML = `
+            <h2>${title}</h2>
+            <p>${message}</p>
+            <p>Skor Akhir: <strong>${score}/${GAME_CONFIG.maxScore}</strong></p>
+            <p>Perkataan yang ditangkap:</p>
+            <div class="eaten-words-container">
+                ${eatenWords.map(word => `
+                    <span class="eaten-word">
+                        ${word}
+                    </span>`).join('')}
+            </div>
+            <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
+        `;
+        this.gameArea.appendChild(gameOverScreen);
+        document.getElementById('restartBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            gameController.resetGame();
+        });
+    }
+    removeGameOver() {
+        const gameOver = document.querySelector('.game-over');
+        if (gameOver) gameOver.remove();
+    }
+}
+class GameController {
+    constructor() {
+        this.state = new GameState();
+        this.dom = new DOMManager();
+        this.setupEventListeners();
+    }
+    setupEventListeners() {
+        this.dom.startBtn.addEventListener('click', () => this.startGame());
+        this.dom.pauseBtn.addEventListener('click', () => this.togglePause());
+        this.dom.resetBtn.addEventListener('click', () => this.resetGame());
+        // Touch event support
+        this.dom.gameArea.addEventListener('touchstart', (e) => {
+            if (e.target.classList.contains('floating-word')) {
+                e.preventDefault();
+                e.target.click();
             }
-            reset() {
-                this.active = false;
-                this.paused = false;
-                this.score = GAME_CONFIG.initialScore;
-                this.timer = GAME_CONFIG.gameDuration;
-                this.eatenWords = [];
-                this.floatingWords = [];
-                this.intervals = [];
-                this.generateWords();
-            }
-            generateWords() {
-                this.words = Array.from({ length: 20 }, () => 
-                    Math.random() < GAME_CONFIG.kamiSpawnProbability 
-                        ? 'kami' 
-                        : WORDS.others[Math.floor(Math.random() * WORDS.others.length)]
-                );
-            }
-            addInterval(interval) {
-                this.intervals.push(interval);
-            }
-            clearIntervals() {
-                this.intervals.forEach(clearInterval);
-                this.intervals = [];
-            }
-            addFloatingWord(wordElement) {
-                this.floatingWords.push(wordElement);
-            }
-            removeFloatingWord(wordElement) {
-                this.floatingWords = this.floatingWords.filter(w => w !== wordElement);
-            }
-            clearFloatingWords() {
-                this.floatingWords.forEach(word => {
-                    if (word.parentNode) {
-                        clearTimeout(word.dataset.timeoutId);
-                        word.remove();
-                    }
-                });
-                this.floatingWords = [];
-            }
-        }
-        class DOMManager {
-            constructor() {
-                this.gameArea = document.getElementById('gameArea');
-                this.scoreDisplay = document.getElementById('scoreDisplay');
-                this.timerDisplay = document.getElementById('timer');
-                this.startBtn = document.getElementById('startBtn');
-                this.pauseBtn = document.getElementById('pauseBtn');
-                this.resetBtn = document.getElementById('resetBtn'); // Tambahkan resetBtn
-                this.instruction = document.getElementById('instruction');
-                this.bellyDisplay = document.getElementById('bellyDisplay');
-                this.kamiMouth = document.getElementById('kamiMouth');
-            }
-            updateScore(score) {
-                this.scoreDisplay.textContent = score;
-            }
-            updateTimer(timer) {
-                this.timerDisplay.textContent = timer;
-            }
-            toggleStartButton(active) {
-                this.startBtn.textContent = active ? '🎮 Bermain' : '🚀 Mula';
-                this.startBtn.disabled = active;
-            }
-            togglePauseButton(paused) {
-                this.pauseBtn.textContent = paused ? '▶️ Sambung' : '⏸️ Jeda';
-            }
-            showInstruction(show) {
-                this.instruction.style.display = show ? 'block' : 'none';
-            }
-            clearBelly() {
-                this.bellyDisplay.innerHTML = '';
-            }
-            createWordElement(word) {
-                const wordElement = document.createElement('div');
-                wordElement.className = `floating-word ${word === 'kami' ? 'kami-word' : 'other-word'}`;
-                wordElement.textContent = word;
-                wordElement.dataset.word = word;
-                wordElement.dataset.caught = 'false';
-                wordElement.style.pointerEvents = 'auto';
-                return wordElement;
-            }
-            positionWordElement(wordElement) {
-                const maxWidth = this.gameArea.offsetWidth - 100;
-                const startX = Math.random() * maxWidth;
-                wordElement.style.left = `${Math.max(10, Math.min(startX, maxWidth))}px`;
-                wordElement.style.top = '-50px';
-                return wordElement;
-            }
-            animateMouth(isHappy) {
-                this.kamiMouth.classList.remove('happy', 'sad'); // Pastikan kelas lama dibuang
-                // Gunakan setTimeout untuk memastikan kelas dibuang sebelum ditambah semula
-                setTimeout(() => {
-                    this.kamiMouth.classList.add(isHappy ? 'happy' : 'sad');
-                }, 10);
-                setTimeout(() => {
-                    this.kamiMouth.classList.remove('happy', 'sad');
-                }, 500);
-            }
-            showGameOver(title, message, score, eatenWords) {
-                const gameOverScreen = document.createElement('div');
-                gameOverScreen.className = 'game-over';
-                gameOverScreen.innerHTML = `
-                    <h2>${title}</h2>
-                    <p>${message}</p>
-                    <p>Skor Akhir: <strong>${score}/${GAME_CONFIG.maxScore}</strong></p>
-                    <p>Perkataan yang ditangkap:</p>
-                    <div class="eaten-words-container">
-                        ${eatenWords.map(word => `
-                            <span class="eaten-word ${word === 'kami' ? 'kami-caught' : 'other-caught'}">
-                                ${word}
-                            </span>`).join('')}
-                    </div>
-                    <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
-                `;
-                this.gameArea.appendChild(gameOverScreen);
-                document.getElementById('restartBtn').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    gameController.resetGame();
-                });
-            }
-            removeGameOver() {
-                const gameOver = document.querySelector('.game-over');
-                if (gameOver) gameOver.remove();
-            }
-        }
-        class GameController {
-            constructor() {
-                this.state = new GameState();
-                this.dom = new DOMManager();
-                this.setupEventListeners();
-            }
-            setupEventListeners() {
-                this.dom.startBtn.addEventListener('click', () => this.startGame());
-                this.dom.pauseBtn.addEventListener('click', () => this.togglePause());
-                this.dom.resetBtn.addEventListener('click', () => this.resetGame()); // Tambahkan event listener untuk resetBtn
-                // Sokongan acara sentuh
-                this.dom.gameArea.addEventListener('touchstart', (e) => {
-                    if (e.target.classList.contains('floating-word')) {
-                        e.preventDefault();
-                        // Cetuskan acara klik untuk memastikan logik catchWord dipanggil
-                        const clickEvent = new MouseEvent('click', {
-                            view: window,
-                            bubbles: true,
-                            cancelable: true
-                        });
-                        e.target.dispatchEvent(clickEvent);
-                    }
-                }, { passive: false });
-                
-                // Elakkan zum tidak sengaja
-                document.addEventListener('touchmove', function(e) {
-                    if (e.scale !== 1) { e.preventDefault(); }
-                }, { passive: false });
-            }
-            startGame() {
-                if (this.state.active) return;
-                this.state.reset();
-                this.state.active = true;
-                this.dom.updateScore(this.state.score);
-                this.dom.updateTimer(this.state.timer);
-                this.dom.toggleStartButton(true);
-                this.dom.showInstruction(false);
-                this.dom.clearBelly();
-                this.dom.removeGameOver();
-                this.spawnWord();
-                this.state.addInterval(setInterval(() => this.spawnWord(), GAME_CONFIG.wordSpawnInterval));
-                this.state.addInterval(setInterval(() => this.updateTimer(), 1000));
-            }
-            spawnWord() {
-                if (!this.state.active || this.state.paused || this.state.words.length === 0) return;
-                const word = this.state.words.shift();
-                const wordElement = this.dom.positionWordElement(this.dom.createWordElement(word));
-                // Gunakan event listener sekali dengan {once: true}
-                wordElement.addEventListener('click', () => this.catchWord(wordElement), {once: true});
-                this.dom.gameArea.appendChild(wordElement);
-                this.state.addFloatingWord(wordElement);
-                const timeoutId = setTimeout(() => {
-                    if (wordElement.parentNode) {
-                        this.removeWord(wordElement);
-                        if (word === 'kami' && wordElement.dataset.caught === 'false') {
-                            this.updateScore(GAME_CONFIG.scoreChange.other);
-                        }
-                    }
-                }, GAME_CONFIG.wordDisplayDuration);
-                wordElement.dataset.timeoutId = timeoutId;
-            }
-            catchWord(wordElement) {
-                if (!this.state.active || this.state.paused) return;
-                // Lumpuhkan elemen serta-merta selepas klik
-                wordElement.style.pointerEvents = 'none';
-                wordElement.dataset.caught = 'true';
-                clearTimeout(wordElement.dataset.timeoutId);
-                const word = wordElement.dataset.word;
-                this.state.eatenWords.push(word);
-                this.dom.animateMouth(word === 'kami');
-                this.updateScore(word === 'kami' ? GAME_CONFIG.scoreChange.kami : GAME_CONFIG.scoreChange.other);
-                // Animasi yang lebih lancar
-                wordElement.style.transition = 'all 0.3s ease-out';
-                wordElement.style.transform = 'scale(1.5) translateY(20px)';
-                wordElement.style.opacity = '0';
-                // Alih keluar elemen selepas animasi
-                setTimeout(() => {
-                    if (wordElement.parentNode) {
-                        wordElement.remove();
-                        this.state.removeFloatingWord(wordElement);
-                    }
-                }, 300);
-                // Tambah ke paparan perut
-                const bellyWord = document.createElement('div');
-                bellyWord.className = 'belly-word';
-                bellyWord.textContent = word;
-                this.dom.bellyDisplay.appendChild(bellyWord);
-            }
-            removeWord(wordElement) {
-                if (wordElement.parentNode) {
-                    wordElement.remove();
-                    this.state.removeFloatingWord(wordElement);
+        }, { passive: false });
+    }
+    startGame() {
+        if (this.state.active) return;
+        this.state.reset();
+        this.state.active = true;
+        this.dom.updateScore(this.state.score);
+        this.dom.updateTimer(this.state.timer);
+        this.dom.toggleStartButton(true);
+        this.dom.showInstruction(false);
+        this.dom.clearBelly();
+        this.dom.removeGameOver();
+        this.spawnWord();
+        this.state.addInterval(setInterval(() => this.spawnWord(), GAME_CONFIG.wordSpawnInterval));
+        this.state.addInterval(setInterval(() => this.updateTimer(), 1000));
+    }
+    spawnWord() {
+        if (!this.state.active || this.state.paused || this.state.words.length === 0) return;
+        const word = this.state.words.shift();
+        const wordElement = this.dom.positionWordElement(this.dom.createWordElement(word));
+        // Adjust animation duration based on screen height
+        const animationDuration = Math.max(4, Math.min(8, (this.dom.gameArea.offsetHeight / 100)));
+        wordElement.style.animationDuration = `${animationDuration}s`;
+        wordElement.addEventListener('click', () => this.catchWord(wordElement), {once: true});
+        this.dom.gameArea.appendChild(wordElement);
+        this.state.addFloatingWord(wordElement);
+        const timeoutId = setTimeout(() => {
+            if (wordElement.parentNode) {
+                this.removeWord(wordElement);
+                if (word === 'kami' && wordElement.dataset.caught === 'false') {
+                    this.updateScore(GAME_CONFIG.scoreChange.other);
                 }
             }
-            updateScore(change = 0) {
-                this.state.score = Math.max(
-                    0, 
-                    Math.min(GAME_CONFIG.maxScore, this.state.score + change)
-                );
-                this.dom.updateScore(this.state.score);
+        }, GAME_CONFIG.wordDisplayDuration);
+        wordElement.dataset.timeoutId = timeoutId;
+    }
+    catchWord(wordElement) {
+        if (!this.state.active || this.state.paused) return;
+        wordElement.style.pointerEvents = 'none';
+        wordElement.dataset.caught = 'true';
+        clearTimeout(wordElement.dataset.timeoutId);
+        const word = wordElement.dataset.word;
+        this.state.eatenWords.push(word);
+        this.dom.animateMouth(word === 'kami');
+        this.updateScore(word === 'kami' ? GAME_CONFIG.scoreChange.kami : GAME_CONFIG.scoreChange.other);
+        wordElement.style.transition = 'all 0.3s ease-out';
+        wordElement.style.transform = 'scale(1.5) translateY(20px)';
+        wordElement.style.opacity = '0';
+        setTimeout(() => {
+            if (wordElement.parentNode) {
+                wordElement.remove();
+                this.state.removeFloatingWord(wordElement);
             }
-            updateTimer() {
-                if (!this.state.paused && this.state.active) {
-                    this.state.timer--;
-                    this.dom.updateTimer(this.state.timer);
-                    if (this.state.timer <= 0) {
-                        this.endGame();
-                    }
-                }
-            }
-            togglePause() {
-                if (!this.state.active) return;
-                this.state.paused = !this.state.paused;
-                this.dom.togglePauseButton(this.state.paused);
-                const animationState = this.state.paused ? 'paused' : 'running';
-                this.state.floatingWords.forEach(word => {
-                    word.style.animationPlayState = animationState;
-                });
-            }
-            endGame() {
-                this.state.clearIntervals();
-                this.state.clearFloatingWords();
-                this.state.active = false;
-                this.dom.showGameOver(
-                    '⌛ Masa Tamat!',
-                    `Permainan berakhir selepas ${GAME_CONFIG.gameDuration} saat.<br>
-                     Anda berjaya menangkap ${this.state.eatenWords.filter(w => w === 'kami').length} perkataan "kami".`,
-                    this.state.score,
-                    this.state.eatenWords
-                );
-                this.dom.toggleStartButton(false);
-            }
-            resetGame() {
-                this.state.clearIntervals();
-                this.state.clearFloatingWords();
-                this.state.reset();
-                this.dom.updateScore(this.state.score);
-                this.dom.updateTimer(this.state.timer);
-                this.dom.toggleStartButton(false);
-                this.dom.showInstruction(true);
-                this.dom.clearBelly();
-                this.dom.removeGameOver();
+        }, 300);
+        const bellyWord = document.createElement('div');
+        bellyWord.className = 'belly-word';
+        bellyWord.textContent = word;
+        this.dom.bellyDisplay.appendChild(bellyWord);
+    }
+    removeWord(wordElement) {
+        if (wordElement.parentNode) {
+            wordElement.remove();
+            this.state.removeFloatingWord(wordElement);
+        }
+    }
+    updateScore(change = 0) {
+        this.state.score = Math.max(
+            0, 
+            Math.min(GAME_CONFIG.maxScore, this.state.score + change)
+        );
+        this.dom.updateScore(this.state.score);
+    }
+    updateTimer() {
+        if (!this.state.paused && this.state.active) {
+            this.state.timer--;
+            this.dom.updateTimer(this.state.timer);
+            if (this.state.timer <= 0) {
+                this.endGame();
             }
         }
-        const gameController = new GameController();
-        document.addEventListener('DOMContentLoaded', () => gameController.resetGame());
-    </script>
+    }
+    togglePause() {
+        if (!this.state.active) return;
+        this.state.paused = !this.state.paused;
+        this.dom.togglePauseButton(this.state.paused);
+        const animationState = this.state.paused ? 'paused' : 'running';
+        this.state.floatingWords.forEach(word => {
+            word.style.animationPlayState = animationState;
+        });
+    }
+    endGame() {
+        this.state.clearIntervals();
+        this.state.clearFloatingWords();
+        this.state.active = false;
+        this.dom.showGameOver(
+            '⌛ Masa Tamat!',
+            `Permainan berakhir selepas ${GAME_CONFIG.gameDuration} saat.<br>
+             Anda berjaya menangkap ${this.state.eatenWords.filter(w => w === 'kami').length} perkataan "kami".`,
+            this.state.score,
+            this.state.eatenWords
+        );
+        this.dom.toggleStartButton(false);
+    }
+    resetGame() {
+        this.state.clearIntervals();
+        this.state.clearFloatingWords();
+        this.state.reset();
+        this.dom.updateScore(this.state.score);
+        this.dom.updateTimer(this.state.timer);
+        this.dom.toggleStartButton(false);
+        this.dom.showInstruction(true);
+        this.dom.clearBelly();
+        this.dom.removeGameOver();
+    }
+}
+const gameController = new GameController();
+document.addEventListener('DOMContentLoaded', () => gameController.resetGame());
+// Prevent accidental zooming on mobile
+document.addEventListener('touchmove', function(e) {
+    if (e.scale !== 1) { e.preventDefault(); }
+}, { passive: false });
+</script>
 </body>
 </html>
+```
