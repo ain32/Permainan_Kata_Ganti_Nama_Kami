@@ -11,10 +11,8 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-        /* Gunakan fon web yang selamat untuk konsistensi maksima */
         body {
-            /* Fallback kepada fon sans-serif yang biasa tersedia */
-            font-family: 'Arial', 'Helvetica', 'Roboto', 'Segoe UI', sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             font-size: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -31,16 +29,12 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             width: 100%;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         .header h1 {
             font-size: 2.2em;
             margin-bottom: 8px;
             animation: bounce 2s infinite;
             word-wrap: break-word;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         .header p {
             font-size: 1.1em;
@@ -49,8 +43,6 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
             line-height: 1.4;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -173,8 +165,6 @@
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             animation: labelPulse 2s infinite;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         @keyframes labelPulse {
             0%, 100% { transform: translateX(-50%) scale(1); }
@@ -216,8 +206,6 @@
             font-size: 8px;
             font-weight: bold;
             animation: bellyPop 0.3s ease-out;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         @keyframes bellyPop {
             0% { transform: scale(0); }
@@ -230,8 +218,7 @@
             border-radius: 15px;
             font-size: 20px;
             font-weight: bold;
-            /* Gunakan fon yang sama dengan body untuk konsistensi */
-            font-family: inherit;
+            font-family: 'Comic Sans MS', cursive;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
@@ -242,8 +229,13 @@
             touch-action: manipulation;
             z-index: 5;
             will-change: transform;
-            /* Warna yang sama untuk semua perkataan */
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
+        }
+        .kami-word {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+        }
+        .other-word {
+            background: linear-gradient(45deg, #FF5722, #FF9800);
             color: white;
         }
         .floating-word:hover {
@@ -278,15 +270,11 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             width: 100%;
             max-width: 500px;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         .score-display {
             display: flex;
             align-items: center;
             gap: 8px;
-            /* Warisi fon daripada parent */
-            font-family: inherit;
         }
         .score-number {
             background: #4CAF50;
@@ -297,15 +285,11 @@
             min-width: 60px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            /* Warisi fon daripada parent */
-            font-family: inherit;
         }
         .timer-display {
             display: flex;
             align-items: center;
             gap: 5px;
-            /* Warisi fon daripada parent */
-            font-family: inherit;
         }
         .game-controls {
             display: flex;
@@ -326,8 +310,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             touch-action: manipulation;
             min-width: 100px;
-            /* Gunakan fon yang sama untuk konsistensi */
-            font-family: inherit;
         }
         .control-btn:hover {
             transform: translateY(-2px);
@@ -358,8 +340,6 @@
             max-width: 400px;
             max-height: 80vh;
             overflow-y: auto;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         @keyframes gameOverAnimation {
             0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
@@ -369,16 +349,12 @@
             color: #4CAF50;
             font-size: 2em;
             margin-bottom: 15px;
-            /* Warisi fon daripada parent */
-            font-family: inherit;
         }
         .game-over p {
             color: #666;
             font-size: 1.2em;
             margin-bottom: 15px;
             line-height: 1.4;
-            /* Warisi fon daripada parent */
-            font-family: inherit;
         }
         .eaten-words-container {
             display: flex;
@@ -394,10 +370,14 @@
             padding: 3px 8px;
             border-radius: 8px;
             font-size: 12px;
-            background: #6a11cb;
+        }
+        .kami-caught {
+            background: #4CAF50;
             color: white;
-            /* Warisi fon daripada parent */
-            font-family: inherit;
+        }
+        .other-caught {
+            background: #FF6B6B;
+            color: white;
         }
         .instruction {
             position: absolute;
@@ -415,19 +395,17 @@
             font-size: 14px;
             line-height: 1.4;
             z-index: 20;
-            /* Warisi fon daripada body */
-            font-family: inherit;
         }
         @keyframes instructionBlink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
         }
         /* Landscape orientation adjustments */
-        @media (orientation: landscape) and (max-height: 500px) {
+        @media (orientation: landscape) {
             .game-area {
-                height: 70vh;
-                min-height: 250px;
-                max-height: 350px;
+                height: 65vh;
+                min-height: 300px;
+                max-height: 400px;
             }
             .control-panel {
                 flex-direction: row;
@@ -463,165 +441,6 @@
                 font-size: 18px;
             }
         }
-        /* Small screens */
-        @media (max-width: 360px) {
-            body {
-                padding: 5px;
-            }
-            .header h1 {
-                font-size: 1.8em;
-            }
-            .header p {
-                font-size: 1em;
-                padding: 6px 10px;
-            }
-            .game-area {
-                height: 55vh;
-                min-height: 350px;
-            }
-            .kami-character {
-                width: 120px;
-                height: 160px;
-                bottom: 25px;
-            }
-            .kami-head {
-                width: 90px;
-                height: 80px;
-                border: 3px solid #FF6B6B;
-            }
-            .kami-eyes {
-                top: 20px;
-                left: 20px;
-                right: 20px;
-            }
-            .kami-eye {
-                width: 15px;
-                height: 15px;
-            }
-            .kami-eye::after {
-                width: 3px;
-                height: 3px;
-                top: 1.5px;
-                left: 1.5px;
-            }
-            .kami-mouth {
-                width: 35px;
-                height: 25px;
-                bottom: 12px;
-                border: 2px solid #654321;
-            }
-            .kami-mouth.happy {
-                width: 45px;
-                height: 30px;
-            }
-            .kami-mouth.sad {
-                width: 35px;
-                height: 12px;
-            }
-            .kami-label {
-                top: -20px;
-                padding: 6px 12px;
-                font-size: 16px;
-            }
-            .kami-body {
-                width: 60px;
-                height: 60px;
-                border-radius: 12px;
-                border: 2.5px solid #FF6B6B;
-            }
-            .belly-display {
-                bottom: 6px;
-                left: 6px;
-                right: 6px;
-                top: 6px;
-                border-radius: 6px;
-                padding: 3px;
-                gap: 1.5px;
-            }
-            .belly-word {
-                padding: 1px 3px;
-                border-radius: 4px;
-                font-size: 7px;
-            }
-            .floating-word {
-                font-size: 18px;
-                padding: 10px 16px;
-                border-radius: 12px;
-            }
-            .control-panel {
-                padding: 12px;
-                font-size: 14px;
-            }
-            .score-number {
-                padding: 8px 12px;
-                font-size: 20px;
-                min-width: 50px;
-            }
-            .control-btn {
-                padding: 10px 15px;
-                font-size: 14px;
-                min-width: 85px;
-            }
-            .game-over {
-                padding: 15px;
-                border-radius: 12px;
-            }
-            .game-over h2 {
-                font-size: 1.8em;
-                margin-bottom: 12px;
-            }
-            .game-over p {
-                font-size: 1.1em;
-                margin-bottom: 12px;
-            }
-            .instruction {
-                top: 8px;
-                left: 8px;
-                right: 8px;
-                padding: 8px;
-                font-size: 12px;
-                border-radius: 8px;
-            }
-        }
-        /* Very large screens */
-        @media (min-width: 1024px) {
-            body {
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 3em;
-            }
-            .header p {
-                font-size: 1.4em;
-            }
-            .game-area {
-                height: 65vh;
-                max-height: 600px;
-            }
-            .kami-character {
-                width: 180px;
-                height: 240px;
-                bottom: 40px;
-            }
-            .kami-head {
-                width: 140px;
-                height: 120px;
-            }
-            .floating-word {
-                font-size: 24px;
-                padding: 16px 22px;
-            }
-            .control-panel {
-                max-width: 600px;
-                padding: 20px;
-                font-size: 18px;
-            }
-            .control-btn {
-                padding: 15px 25px;
-                font-size: 18px;
-                min-width: 120px;
-            }
-        }
         /* Prevent text selection during gameplay */
         .no-select {
             -webkit-user-select: none;
@@ -632,7 +451,6 @@
     </style>
 </head>
 <body class="no-select">
-    <!-- Isi HTML kekal sama -->
     <div class="header">
         <h1>🎮 Permainan "kami"</h1>
         <p>Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".</p>
@@ -670,15 +488,14 @@
             <button class="control-btn" id="resetBtn">🔄 Reset</button>
         </div>
     </div>
-    <script>
-       // Kod JavaScript kekal sama
-        // Game Configuration
+<script>
+// Game Configuration
 const GAME_CONFIG = {
     initialScore: 20,
     maxScore: 20,
     gameDuration: 30,
-    wordSpawnInterval: 2000,
-    wordDisplayDuration: 6000,
+    wordSpawnInterval: 2000, // Increased from 1500 to 2000
+    wordDisplayDuration: 6000, // Increased from 3000 to 6000
     kamiSpawnProbability: 0.5,
     scoreChange: {
         kami: 1,
@@ -770,7 +587,7 @@ class DOMManager {
     }
     createWordElement(word) {
         const wordElement = document.createElement('div');
-        wordElement.className = `floating-word`; // Semua perkataan menggunakan kelas yang sama untuk warna
+        wordElement.className = `floating-word ${word === 'kami' ? 'kami-word' : 'other-word'}`;
         wordElement.textContent = word;
         wordElement.dataset.word = word;
         wordElement.dataset.caught = 'false';
@@ -800,17 +617,19 @@ class DOMManager {
             <p>Perkataan yang ditangkap:</p>
             <div class="eaten-words-container">
                 ${eatenWords.map(word => `
-                    <span class="eaten-word">
+                    <span class="eaten-word ${word === 'kami' ? 'kami-caught' : 'other-caught'}">
                         ${word}
                     </span>`).join('')}
             </div>
-            <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
+            <!-- Perubahan di sini: Tambahkan ID dan onclick secara langsung -->
+            <button class="control-btn" id="restartBtn" onclick="gameController.resetGame()">🔄 Main Lagi</button>
         `;
         this.gameArea.appendChild(gameOverScreen);
-        document.getElementById('restartBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            gameController.resetGame();
-        });
+        // Perubahan di sini: Hapuskan event listener yang tidak akan berfungsi
+        // document.getElementById('restartBtn').addEventListener('click', (e) => {
+        //     e.stopPropagation();
+        //     gameController.resetGame();
+        // });
     }
     removeGameOver() {
         const gameOver = document.querySelector('.game-over');
@@ -853,9 +672,10 @@ class GameController {
         if (!this.state.active || this.state.paused || this.state.words.length === 0) return;
         const word = this.state.words.shift();
         const wordElement = this.dom.positionWordElement(this.dom.createWordElement(word));
-        // Adjust animation duration based on screen height
+        // Adjust animation duration based on screen height (slower movement)
         const animationDuration = Math.max(4, Math.min(8, (this.dom.gameArea.offsetHeight / 100)));
         wordElement.style.animationDuration = `${animationDuration}s`;
+        // Use event listener once with {once: true}
         wordElement.addEventListener('click', () => this.catchWord(wordElement), {once: true});
         this.dom.gameArea.appendChild(wordElement);
         this.state.addFloatingWord(wordElement);
@@ -871,6 +691,7 @@ class GameController {
     }
     catchWord(wordElement) {
         if (!this.state.active || this.state.paused) return;
+        // Disable element immediately after click
         wordElement.style.pointerEvents = 'none';
         wordElement.dataset.caught = 'true';
         clearTimeout(wordElement.dataset.timeoutId);
@@ -878,15 +699,18 @@ class GameController {
         this.state.eatenWords.push(word);
         this.dom.animateMouth(word === 'kami');
         this.updateScore(word === 'kami' ? GAME_CONFIG.scoreChange.kami : GAME_CONFIG.scoreChange.other);
+        // Smoother animation
         wordElement.style.transition = 'all 0.3s ease-out';
         wordElement.style.transform = 'scale(1.5) translateY(20px)';
         wordElement.style.opacity = '0';
+        // Remove element after animation
         setTimeout(() => {
             if (wordElement.parentNode) {
                 wordElement.remove();
                 this.state.removeFloatingWord(wordElement);
             }
         }, 300);
+        // Add to belly display
         const bellyWord = document.createElement('div');
         bellyWord.className = 'belly-word';
         bellyWord.textContent = word;
@@ -954,6 +778,6 @@ document.addEventListener('DOMContentLoaded', () => gameController.resetGame());
 document.addEventListener('touchmove', function(e) {
     if (e.scale !== 1) { e.preventDefault(); }
 }, { passive: false });
-    </script>
+</script>
 </body>
 </html>
