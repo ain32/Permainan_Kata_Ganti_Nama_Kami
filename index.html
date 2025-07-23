@@ -465,12 +465,11 @@
 </head>
 <body>
     <div class="header">
-        <h1>🎮 Permainan "kami"</h1>
-        <p>Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".</p>
+        <h1>🎮 Permainan Kata Ganti Nama - "kami"</h1>
+        <p>Klik hanya pada perkataan KAMI untuk memberi makan kepada "kami".</p>
     </div>
     <div class="game-area" id="gameArea">
         <div class="instruction" id="instruction">
-            🎯 Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".
         </div>
         <div class="kami-character">
             <div class="kami-head">
@@ -497,7 +496,7 @@
         </div>
         <div class="game-controls">
             <button class="control-btn start" id="startBtn">🚀 Mula</button>
-            <button class="control-btn pause" id="pauseBtn">⏸️ Jeda</button>
+            <button class="control-btn pause" id="pauseBtn">⏸️ Henti</button>
             <button class="control-btn" id="resetBtn">🔄 Reset</button>
         </div>
     </div>
@@ -637,10 +636,10 @@ class DOMManager {
             <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
         `;
         this.gameArea.appendChild(gameOverScreen);
-        document.getElementById('restartBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
+        // Use {once: true} to prevent multiple event listeners
+        document.getElementById('restartBtn').addEventListener('click', () => {
             gameController.resetGame();
-        });
+        }, { once: true });
     }
     removeGameOver() {
         const gameOver = document.querySelector('.game-over');
@@ -779,15 +778,20 @@ class GameController {
         this.dom.toggleStartButton(false);
     }
     resetGame() {
+        // Clear all intervals and floating words
         this.state.clearIntervals();
         this.state.clearFloatingWords();
+        
+        // Reset game state
         this.state.reset();
+        
+        // Update UI immediately
         this.dom.updateScore(this.state.score);
         this.dom.updateTimer(this.state.timer);
-        this.dom.toggleStartButton(false);
+        this.dom.toggleStartButton(false); // Ensure start button is re-enabled
         this.dom.showInstruction(true);
         this.dom.clearBelly();
-        this.dom.removeGameOver();
+        this.dom.removeGameOver(); // Remove game over screen if present
     }
 }
 const gameController = new GameController();
