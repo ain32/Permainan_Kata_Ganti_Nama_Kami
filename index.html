@@ -465,11 +465,12 @@
 </head>
 <body>
     <div class="header">
-        <h1>🎮 Permainan Kata Ganti Nama - "kami"</h1>
-        <p>Klik hanya pada perkataan KAMI untuk memberi makan kepada "kami".</p>
+        <h1>🎮 Permainan "kami"</h1>
+        <p>Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".</p>
     </div>
     <div class="game-area" id="gameArea">
         <div class="instruction" id="instruction">
+            🎯 Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".
         </div>
         <div class="kami-character">
             <div class="kami-head">
@@ -496,7 +497,7 @@
         </div>
         <div class="game-controls">
             <button class="control-btn start" id="startBtn">🚀 Mula</button>
-            <button class="control-btn pause" id="pauseBtn">⏸️ Henti</button>
+            <button class="control-btn pause" id="pauseBtn">⏸️ Jeda</button>
             <button class="control-btn" id="resetBtn">🔄 Reset</button>
         </div>
     </div>
@@ -577,6 +578,8 @@ class DOMManager {
         this.instruction = document.getElementById('instruction');
         this.bellyDisplay = document.getElementById('bellyDisplay');
         this.kamiMouth = document.getElementById('kamiMouth');
+        // Store reference to the current restart button for cleanup
+        this.currentRestartBtn = null;
     }
     updateScore(score) {
         this.scoreDisplay.textContent = score;
@@ -636,14 +639,31 @@ class DOMManager {
             <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
         `;
         this.gameArea.appendChild(gameOverScreen);
-        // Use {once: true} to prevent multiple event listeners
-        document.getElementById('restartBtn').addEventListener('click', () => {
+        
+        // Store reference to the new restart button
+        this.currentRestartBtn = document.getElementById('restartBtn');
+        
+        // Add event listener directly to the new button
+        // Using addEventListener with a named function for easier management
+        const handleRestart = () => {
+            console.log("Restart button clicked"); // Debugging
             gameController.resetGame();
-        }, { once: true });
+            // Remove the event listener to prevent duplicates
+            this.currentRestartBtn.removeEventListener('click', handleRestart);
+        };
+        this.currentRestartBtn.addEventListener('click', handleRestart);
     }
     removeGameOver() {
         const gameOver = document.querySelector('.game-over');
-        if (gameOver) gameOver.remove();
+        if (gameOver) {
+            // If there's an existing restart button with an event listener, remove it cleanly
+            if (this.currentRestartBtn) {
+                 // We don't have the exact handler function here, so we'll just remove the element
+                 // The event listener will be garbage collected when the element is removed
+                 this.currentRestartBtn = null;
+            }
+            gameOver.remove();
+        }
     }
 }
 class GameController {
@@ -778,6 +798,7 @@ class GameController {
         this.dom.toggleStartButton(false);
     }
     resetGame() {
+        console.log("Resetting game..."); // Debugging
         // Clear all intervals and floating words
         this.state.clearIntervals();
         this.state.clearFloatingWords();
@@ -792,6 +813,8 @@ class GameController {
         this.dom.showInstruction(true);
         this.dom.clearBelly();
         this.dom.removeGameOver(); // Remove game over screen if present
+        
+        console.log("Game reset complete"); // Debugging
     }
 }
 const gameController = new GameController();
