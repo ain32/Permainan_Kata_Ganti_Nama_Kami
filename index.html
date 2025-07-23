@@ -5,26 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Permainan Kata Ganti Nama - "kami"</title>
     <style>
-        /* 
-         * Walaupun kita tidak menyediakan fon tersuai, 
-         * menetapkan font-display untuk fon sistem adalah amalan yang baik.
-         * Di sini kita hanya memastikan fallback digunakan dengan betul.
-         */
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-        /*
-         * Fallback font strategy:
-         * 1. 'Comic Sans MS' - Fon pilihan utama.
-         * 2. cursive - Kategori fon sistem yang menyerupai Comic Sans jika yang pertama tidak ada.
-         * 3. sans-serif - Fallback paling selamat untuk memastikan teks sentiasa kelihatan dengan baik.
-         */
+        /* Gunakan fon web yang selamat untuk konsistensi maksima */
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif; 
+            /* Fallback kepada fon sans-serif yang biasa tersedia */
+            font-family: 'Arial', 'Helvetica', 'Roboto', 'Segoe UI', sans-serif;
             font-size: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -41,14 +31,16 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             width: 100%;
+            /* Warisi fon daripada body */
+            font-family: inherit;
         }
         .header h1 {
             font-size: 2.2em;
             margin-bottom: 8px;
             animation: bounce 2s infinite;
             word-wrap: break-word;
-            /* Pastikan font header juga menggunakan fallback yang sama */
-            font-family: inherit; 
+            /* Warisi fon daripada body */
+            font-family: inherit;
         }
         .header p {
             font-size: 1.1em;
@@ -57,6 +49,7 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
             line-height: 1.4;
+            /* Warisi fon daripada body */
             font-family: inherit;
         }
         @keyframes bounce {
@@ -180,6 +173,7 @@
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             animation: labelPulse 2s infinite;
+            /* Warisi fon daripada body */
             font-family: inherit;
         }
         @keyframes labelPulse {
@@ -222,8 +216,8 @@
             font-size: 8px;
             font-weight: bold;
             animation: bellyPop 0.3s ease-out;
-            /* Gunakan font warisan untuk konsistensi */
-            font-family: inherit; 
+            /* Warisi fon daripada body */
+            font-family: inherit;
         }
         @keyframes bellyPop {
             0% { transform: scale(0); }
@@ -236,8 +230,8 @@
             border-radius: 15px;
             font-size: 20px;
             font-weight: bold;
-            /* Gunakan font family yang sama dengan body */
-            font-family: 'Comic Sans MS', cursive, sans-serif; 
+            /* Gunakan fon yang sama dengan body untuk konsistensi */
+            font-family: inherit;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
@@ -284,12 +278,15 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             width: 100%;
             max-width: 500px;
+            /* Warisi fon daripada body */
             font-family: inherit;
         }
         .score-display {
             display: flex;
             align-items: center;
             gap: 8px;
+            /* Warisi fon daripada parent */
+            font-family: inherit;
         }
         .score-number {
             background: #4CAF50;
@@ -300,12 +297,14 @@
             min-width: 60px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* Warisi fon daripada parent */
             font-family: inherit;
         }
         .timer-display {
             display: flex;
             align-items: center;
             gap: 5px;
+            /* Warisi fon daripada parent */
             font-family: inherit;
         }
         .game-controls {
@@ -327,8 +326,8 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             touch-action: manipulation;
             min-width: 100px;
-            /* Gunakan font family yang sama */
-            font-family: 'Comic Sans MS', cursive, sans-serif; 
+            /* Gunakan fon yang sama untuk konsistensi */
+            font-family: inherit;
         }
         .control-btn:hover {
             transform: translateY(-2px);
@@ -359,6 +358,7 @@
             max-width: 400px;
             max-height: 80vh;
             overflow-y: auto;
+            /* Warisi fon daripada body */
             font-family: inherit;
         }
         @keyframes gameOverAnimation {
@@ -369,6 +369,7 @@
             color: #4CAF50;
             font-size: 2em;
             margin-bottom: 15px;
+            /* Warisi fon daripada parent */
             font-family: inherit;
         }
         .game-over p {
@@ -376,6 +377,7 @@
             font-size: 1.2em;
             margin-bottom: 15px;
             line-height: 1.4;
+            /* Warisi fon daripada parent */
             font-family: inherit;
         }
         .eaten-words-container {
@@ -394,6 +396,7 @@
             font-size: 12px;
             background: #6a11cb;
             color: white;
+            /* Warisi fon daripada parent */
             font-family: inherit;
         }
         .instruction {
@@ -412,6 +415,7 @@
             font-size: 14px;
             line-height: 1.4;
             z-index: 20;
+            /* Warisi fon daripada body */
             font-family: inherit;
         }
         @keyframes instructionBlink {
@@ -628,6 +632,7 @@
     </style>
 </head>
 <body class="no-select">
+    <!-- Isi HTML kekal sama -->
     <div class="header">
         <h1>🎮 Permainan "kami"</h1>
         <p>Klik dan sebut kata ganti nama diri yang terbang untuk memberi makan kepada "kami".</p>
@@ -665,8 +670,9 @@
             <button class="control-btn" id="resetBtn">🔄 Reset</button>
         </div>
     </div>
-<script>
-// Game Configuration
+    <script>
+       // Kod JavaScript kekal sama
+        // Game Configuration
 const GAME_CONFIG = {
     initialScore: 20,
     maxScore: 20,
@@ -948,6 +954,6 @@ document.addEventListener('DOMContentLoaded', () => gameController.resetGame());
 document.addEventListener('touchmove', function(e) {
     if (e.scale !== 1) { e.preventDefault(); }
 }, { passive: false });
-</script>
+    </script>
 </body>
 </html>
