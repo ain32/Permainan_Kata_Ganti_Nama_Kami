@@ -1,14 +1,3 @@
-Baik, saya faham kebimbangan anda. Masalah font tidak memuat pada peranti mobile biasanya berlaku apabila fon khusus seperti 'Comic Sans MS' tidak tersedia secara lalai pada sistem operasi tertentu.
-
-Saya akan ubah kod untuk memastikan font kelihatan konsisten merentas semua peranti dengan cara berikut:
-
-1.  **Kekalkan `font-family: 'Comic Sans MS', cursive, sans-serif;`** - Ini akan cuba menggunakan 'Comic Sans MS' dahulu, jika tidak tersedia, ia akan jatuh ke belakang kepada fon `cursive` sistem, dan sekiranya masih tidak ada, akan menggunakan mana-mana fon `sans-serif` yang tersedia.
-2.  **Tambah `font-display: swap;`** dalam `@font-face` - Ini memastikan teks kelihatan segera menggunakan fon ganti sementara fon utama dimuat turun (jika kita menyediakan fon tersuai).
-3.  **Pastikan fallback font jelas** - Dengan menyenaraikan `sans-serif` sebagai fallback terakhir, kita memastikan teks sentiasa kelihatan dalam fon yang sesuai.
-
-Namun, dalam kod terakhir yang anda berikan, ia sudah menggunakan pendekatan ini. Saya akan pastikan ia kekal dan tambah sedikit penambahbaikan untuk memastikan konsistensi maksimum.
-
-```html
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -962,4 +951,3 @@ document.addEventListener('touchmove', function(e) {
 </script>
 </body>
 </html>
-```
