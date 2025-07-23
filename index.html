@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Removed maximum-scale and user-scalable for better user control -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Permainan Kata Ganti Nama - "kami"</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Prevent tap highlight on iOS */
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            /* Use web-safe font stack */
+            /* Tukar kepada font web-safe */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             font-size: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -24,9 +22,8 @@
             align-items: center;
             padding: 10px;
             overflow-x: hidden;
-            /* Enable fast touch response */
             touch-action: manipulation;
-            /* Prevent text selection */
+            /* Tambah untuk elak pemilihan teks */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -223,29 +220,23 @@
         }
         .floating-word {
             position: absolute;
-            padding: 14px 20px; /* Slightly larger for easier touch */
+            /* Sedikit tambah padding untuk sentuhan mudah */
+            padding: 14px 20px;
             border-radius: 15px;
-            font-size: 20px; /* Kept consistent */
+            font-size: 20px;
             font-weight: bold;
-            /* Ensure font is consistent */
+            /* Gunakan font yang sama dengan body untuk konsistensi */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
-            /* Slower animation for better visibility */
+            /* Perlahankan animasi untuk kejelasan lebih baik */
             animation: floatDown 8s linear forwards;
-            /* Prevent text selection */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            /* Ensure pointer events are enabled */
             pointer-events: auto;
-            /* Enable fast touch response */
             touch-action: manipulation;
             z-index: 5;
-            /* Hint to browser for performance optimization */
             will-change: transform;
         }
         .kami-word {
@@ -316,19 +307,18 @@
             justify-content: center;
         }
         .control-btn {
-            /* Larger minimum width and padding for easier touch */
+            /* Sedikit tambah saiz minimum dan padding untuk sentuhan mudah */
             min-width: 110px;
             background: linear-gradient(45deg, #4ECDC4, #44A08D);
             color: white;
             border: none;
-            padding: 14px 22px; /* Slightly larger for easier touch */
+            padding: 14px 22px;
             border-radius: 12px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            /* Enable fast touch response */
             touch-action: manipulation;
         }
         .control-btn:hover {
@@ -578,8 +568,6 @@ class DOMManager {
         this.instruction = document.getElementById('instruction');
         this.bellyDisplay = document.getElementById('bellyDisplay');
         this.kamiMouth = document.getElementById('kamiMouth');
-        // Store reference to the current restart button for cleanup
-        this.currentRestartBtn = null;
     }
     updateScore(score) {
         this.scoreDisplay.textContent = score;
@@ -639,31 +627,17 @@ class DOMManager {
             <button class="control-btn" id="restartBtn">🔄 Main Lagi</button>
         `;
         this.gameArea.appendChild(gameOverScreen);
-        
-        // Store reference to the new restart button
-        this.currentRestartBtn = document.getElementById('restartBtn');
-        
-        // Add event listener directly to the new button
-        // Using addEventListener with a named function for easier management
-        const handleRestart = () => {
-            console.log("Restart button clicked"); // Debugging
-            gameController.resetGame();
-            // Remove the event listener to prevent duplicates
-            this.currentRestartBtn.removeEventListener('click', handleRestart);
-        };
-        this.currentRestartBtn.addEventListener('click', handleRestart);
+
+        // Tambah event listener untuk butang "Main Lagi"
+        // Yang ini akan reload page sepenuhnya
+        document.getElementById('restartBtn').addEventListener('click', function() {
+            console.log("Butang 'Main Lagi' diklik. Page akan dimuat semula.");
+            window.location.reload(); // Ini akan reload page
+        });
     }
     removeGameOver() {
         const gameOver = document.querySelector('.game-over');
-        if (gameOver) {
-            // If there's an existing restart button with an event listener, remove it cleanly
-            if (this.currentRestartBtn) {
-                 // We don't have the exact handler function here, so we'll just remove the element
-                 // The event listener will be garbage collected when the element is removed
-                 this.currentRestartBtn = null;
-            }
-            gameOver.remove();
-        }
+        if (gameOver) gameOver.remove();
     }
 }
 class GameController {
@@ -798,14 +772,13 @@ class GameController {
         this.dom.toggleStartButton(false);
     }
     resetGame() {
-        console.log("Resetting game..."); // Debugging
         // Clear all intervals and floating words
         this.state.clearIntervals();
         this.state.clearFloatingWords();
-        
+
         // Reset game state
         this.state.reset();
-        
+
         // Update UI immediately
         this.dom.updateScore(this.state.score);
         this.dom.updateTimer(this.state.timer);
@@ -813,8 +786,6 @@ class GameController {
         this.dom.showInstruction(true);
         this.dom.clearBelly();
         this.dom.removeGameOver(); // Remove game over screen if present
-        
-        console.log("Game reset complete"); // Debugging
     }
 }
 const gameController = new GameController();
